@@ -18,35 +18,35 @@ class MyweiboSpider(scrapy.Spider):
 
     cookies=[{
 
-		"_T_WM": "80922713977",
-		"M_WEIBOCN_PARAMS": "luicode=20000174&uicode=20000174",
-		"MLOGIN": "1",
-		"SUB": "_2A25PNbTSDeRhGeFJ71QX9CvIzzuIHXVs2dyarDV6PUJbkdCOLVn7kW1Nf8flhJQpfbjcpq7ezZ39x75NU445R58E",
-		"WEIBOCN_FROM": "1110006030",
-		"XSRF-TOKEN": "8dd21e"
+                "_T_WM": "68333456070",
+                "M_WEIBOCN_PARAMS": "luicode=20000174&uicode=20000174",
+                "MLOGIN": "1",
+                "SUB": "_2A25PMGGZDeRhGeFJ71QX9CvIzzuIHXVs2w_RrDV6PUJbkdANLRHXkW1Nf8flhCqiJJKxTxdSFyGzkJtHkeIdKHjo",
+                "WEIBOCN_FROM": "1110006030",
+                "XSRF-TOKEN": "7bc8d0"
 },
         {
 
-		"_T_WM": "48229609425",
-		"loginScene": "102003",
-		"M_WEIBOCN_PARAMS": "luicode=10000011&lfid=102803&uicode=20000174",
-		"MLOGIN": "1",
-		"SUB": "_2A25PMGCZDeRhGeBI4lAU8y_Ezz6IHXVs2wDRrDV6PUJbkdCOLXbmkW1NRn2D3XsU1qiAMVmwHxBPLQ2pt3iw_xoW",
-		"WEIBOCN_FROM": "1110006030",
-		"XSRF-TOKEN": "24cb83"
+
+                    "_T_WM": "62055704070",
+                    "loginScene": "102003",
+                    "M_WEIBOCN_PARAMS": "luicode=20000174&uicode=20000174",
+                    "MLOGIN": "1",
+                    "SUB": "_2A25PM2V1DeRhGeBI4lAU8y_Ezz6IHXVs3As9rDV6PUJbkdCOLWrhkW1NRn2D3UDINlR8injHkeD83eHYvYGUalfx",
+                    "WEIBOCN_FROM": "1110006030",
+                    "XSRF-TOKEN": "ce3b22"
 
         },
-        {
 
-                    "_T_WM": "17259708822",
+
+        {
+                    "_T_WM": "49438419208",
                     "loginScene": "102003",
                     "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
                     "MLOGIN": "1",
-                    "SUB": "_2A25PMGHZDeRhGeBI4lAU8y_Ezz6IHXVs2w-RrDV6PUJbkdAKLVL1kW1NRn2D3TtEv-CCizOp_dIEiXHXizH-W8Ll",
+                    "SUB": "_2A25PM2Z9DeRhGeFJ71QX9CvIzzuIHXVs3Ao1rDV6PUJbkdAKLW6mkW1Nf8flhGIGO3GekwolB1yno27Siz8C4-0E",
                     "WEIBOCN_FROM": "1110006030",
-                    "XSRF-TOKEN": "d04d89"
-
-
+                    "XSRF-TOKEN": "ed3dc3"
         }
         ,
         {
