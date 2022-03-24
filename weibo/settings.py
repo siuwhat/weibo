@@ -20,12 +20,12 @@ NEWSPIDER_MODULE = 'weibo.spiders'
 ROBOTSTXT_OBEY = False
 USER_AGENT='Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 10
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 0.5
+DOWNLOAD_DELAY = 2.5
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -59,18 +59,20 @@ DOWNLOADER_MIDDLEWARES = {
    # 'weibo.middlewares.WeiboDownloaderMiddleware': 543,
    'weibo.middlewares.ProxyMiddleware': 100,
 }
-DOWNLOAD_TIMEOUT = 25
+DOWNLOAD_TIMEOUT = 15
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 custom_settings = {
-    "RANDOM_DELAY": 2,
+    "RANDOM_DELAY": 5,
     "DOWNLOADER_MIDDLEWARES": {
         "middlewares.random_delay_middleware.RandomDelayMiddleware": 999,
     }
 }
+RETRY_ENABLED = True  #打开重试开关
+RETRY_TIMES = 2  #重试次数
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {

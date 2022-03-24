@@ -10,6 +10,7 @@ class WeiboItem(scrapy.Item):
     USERNAME=scrapy.Field()
     USERID=scrapy.Field()
     LOCATION=scrapy.Field()
+    IPREGION=scrapy.Field()
     TIME=scrapy.Field()
     TEXT=scrapy.Field()
 

@@ -5,6 +5,7 @@ import json
 import weibo.items
 from weibo.timer import TimeFormatTransform
 from weibo.geo import getgeo
+from weibo.ipgeo import getipgeo
 import paramiko
 import time
 class MyweiboSpider(scrapy.Spider):
@@ -16,48 +17,34 @@ class MyweiboSpider(scrapy.Spider):
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname='114.104.210.66', port=20402, username='root', password='nU8tW3tT2uN3')
 
-    cookies=[{
+    cookies=[
 
-                "_T_WM": "68333456070",
-                "M_WEIBOCN_PARAMS": "luicode=20000174&uicode=20000174",
+
+        {
+
+                "_T_WM": "92662429333",
+                "loginScene": "102003",
+                "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
                 "MLOGIN": "1",
-                "SUB": "_2A25PMGGZDeRhGeFJ71QX9CvIzzuIHXVs2w_RrDV6PUJbkdANLRHXkW1Nf8flhCqiJJKxTxdSFyGzkJtHkeIdKHjo",
+                "SUB": "_2A25PODZoDeRhGeFJ71QX9CvIzzuIHXVsw1ogrDV6PUJbkdAKLXbfkW1Nf8flhDHq0VgUnPbLUe-8QU-L_ppSbZeV",
                 "WEIBOCN_FROM": "1110006030",
-                "XSRF-TOKEN": "7bc8d0"
-},
-        {
+                "XSRF-TOKEN": "29cc38"
 
-
-                    "_T_WM": "62055704070",
-                    "loginScene": "102003",
-                    "M_WEIBOCN_PARAMS": "luicode=20000174&uicode=20000174",
-                    "MLOGIN": "1",
-                    "SUB": "_2A25PM2V1DeRhGeBI4lAU8y_Ezz6IHXVs3As9rDV6PUJbkdCOLWrhkW1NRn2D3UDINlR8injHkeD83eHYvYGUalfx",
-                    "WEIBOCN_FROM": "1110006030",
-                    "XSRF-TOKEN": "ce3b22"
-
-        },
-
-
-        {
-                    "_T_WM": "49438419208",
-                    "loginScene": "102003",
-                    "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
-                    "MLOGIN": "1",
-                    "SUB": "_2A25PM2Z9DeRhGeFJ71QX9CvIzzuIHXVs3Ao1rDV6PUJbkdAKLW6mkW1Nf8flhGIGO3GekwolB1yno27Siz8C4-0E",
-                    "WEIBOCN_FROM": "1110006030",
-                    "XSRF-TOKEN": "ed3dc3"
         }
         ,
         {
 
-                "_T_WM": "35541879483",
+                "_T_WM": "99795518178",
+                "ALF": "1650709181",
                 "loginScene": "102003",
-                "M_WEIBOCN_PARAMS": "luicode=20000174&uicode=20000174",
+                "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
                 "MLOGIN": "1",
-                "SUB": "_2A25PMGGZDeRhGeFJ71QX9CvIzzuIHXVs2w_RrDV6PUJbkdANLRHXkW1Nf8flhCqiJJKxTxdSFyGzkJtHkeIdKHjo",
+                "SCF": "AlqSy6RfYVU-NHULFqdZt86ULGHicGIe5bwVzD4MVik6GBEwjQRHD3NKymP6M6rEp8MwjPqnTqh6srf-KtuirNE.",
+                "SSOLoginState": "1648117181",
+                "SUB": "_2A25PODXsDeRhGeBI4lAU8y_Ezz6IHXVsw1ukrDV6PUJbktCOLUHlkW1NRn2D3XuJcWsyF_mYOUasJ-B9rVL3ulRy",
+                "SUBP": "0033WrSXqPxfM725Ws9jqgMF55529P9D9W52_FbY_zGukV0FV9rlYpji5JpX5K-hUgL.Foqc1Kzfe02RShz2dJLoIEBLxKBLBo.L1K5LxKqLB-BLBKeLxK.L1-zLB.-LxKqLBoeLBK5t",
                 "WEIBOCN_FROM": "1110006030",
-                "XSRF-TOKEN": "72473a"
+                "XSRF-TOKEN": "7a9e9a"
 
         }
     ]
@@ -101,12 +88,14 @@ class MyweiboSpider(scrapy.Spider):
         {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24'}
     ]
-    start_urls = ['https://m.weibo.cn/api/container/getIndex?containerid=231522type%3D60%26q%3D%23%E5%90%89%E6%9E%97%E5%86%9C%E4%B8%9A%E7%A7%91%E6%8A%80%E5%AD%A6%E9%99%A2%E7%96%AB%E6%83%85%23%26t%3D10&extparam=%23%E5%90%89%E6%9E%97%E5%86%9C%E4%B8%9A%E7%A7%91%E6%8A%80%E5%AD%A6%E9%99%A2%E7%96%AB%E6%83%85%23&luicode=10000011&lfid=100103type%3D38%26q%3D%E5%90%89%E6%9E%97%E5%86%9C%E4%B8%9A%E7%A7%91%E6%8A%80%E5%AD%A6%E9%99%A2%E7%96%AB%E6%83%85%26t%3D0&page_type=searchall']
+    start_urls=['https://m.weibo.cn/search?containerid=231522type%3D1%26t%3D10%26q%3D%23%E4%B8%9C%E8%88%AA%E5%9D%A0%E6%AF%81%E8%88%AA%E7%8F%AD%E4%B8%8A%E5%85%B1132%E4%BA%BA%23&extparam=%23%E4%B8%9C%E8%88%AA%E5%9D%A0%E6%AF%81%E8%88%AA%E7%8F%AD%E4%B8%8A%E5%85%B1132%E4%BA%BA%23&luicode=10000011&lfid=100103type%3D38%26q%3D%E4%B8%9C%E8%88%AA%26t%3D0']
+   # url=['https://m.weibo.cn/api/container/getIndex?containerid=231522type%3D60%26q%3D%23%E4%B8%9C%E8%88%AA%E5%9D%A0%E6%AF%81%E8%88%AA%E7%8F%AD%E4%B8%8A%E5%85%B1132%E4%BA%BA%23%26t%3D10&extparam=%23%E4%B8%9C%E8%88%AA%E5%9D%A0%E6%AF%81%E8%88%AA%E7%8F%AD%E4%B8%8A%E5%85%B1132%E4%BA%BA%23&luicode=10000011&lfid=100103type%3D38%26q%3D%E4%B8%9C%E8%88%AA%26t%3D0&page_type=searchall']
+    start_urls[0] =start_urls[0].replace('search?containerid=231522type%3D1%26t%3D10','api/container/getIndex?containerid=231522type%3D60')
     def changeip(self):
         print('到点了，定时换号ip')
         stdin, stdout, stderr = self.client.exec_command('pppoe-stop')
         stdin, stdout, stderr = self.client.exec_command('pppoe-start')
-        time.sleep(15)
+        time.sleep(10)
 
     def parse(self, response):
         self.page = self.page + 1
@@ -158,8 +147,10 @@ class MyweiboSpider(scrapy.Spider):
             url = response.meta.get('url') + '&max_id=' + str(max_id)
             for t in data:
                 self.count=self.count+1
-                if self.count % 1500==0:
+                if self.count % 2000==0:
                     self.changeip()
+                elif self.count==10000:
+                    self.crawler.engine.close_spider(self,"10000条达成!")
                 else:
                     user = t.get('user')
                     time = TimeFormatTransform(t.get('created_at'))
@@ -170,11 +161,12 @@ class MyweiboSpider(scrapy.Spider):
                         continue
                     userid = user.get('id')
                     username = user.get('screen_name')
-                    geourl = 'https://weibo.com/ajax/profile/info?uid=' + str(userid)
                     userlocation=getgeo(headers=self.headers,cookies=self.cookies,id=userid,ip=ip)
+                    useriplocation=getipgeo(headers=self.headers,cookies=self.cookies,id=userid,ip=ip)
                     item['USERNAME']=username
                     item['USERID']=str(userid)
                     item['LOCATION']= userlocation
+                    item['IPREGION']=useriplocation
                     item['TIME'] = time
                     item['TEXT'] = text
                     yield item

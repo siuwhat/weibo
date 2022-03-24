@@ -139,6 +139,6 @@ class ProxyMiddleware(object):
     def changeip(self):
         stdin, stdout, stderr = self.client.exec_command('pppoe-stop')
         stdin, stdout, stderr = self.client.exec_command('pppoe-start')
-        time.sleep(15)
+        time.sleep(10)
         self.PROXY_IP_LIST.clear()
         self.GetIp()
