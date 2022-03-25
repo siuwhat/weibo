@@ -9,6 +9,10 @@
 
 
 
+<script src="{{ url_for('static',filename='jquery.min.js') }}"></script>
+
+
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -28,7 +32,7 @@
       }
     </style>
 
-    
+
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static',filename='dashboard.css') }}" rel="stylesheet">
       <link href="{{ url_for('static',filename='bootstrap.min.css') }}" rel="stylesheet">
@@ -123,6 +127,8 @@
       </div>
     </nav>
 
+
+
 <!--  <div>-->
 <!--    <h1 class="h1">fuck</h1>-->
 <!--  </div>-->
@@ -144,12 +150,12 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
               <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-primary">开始爬虫</button>
-
+                <button type="button" class="btn btn-sm btn-outline-primary">开始</button>
+                  <button type="button" id="show" class="btn btn-sm btn-outline-secondary">数据展示</button>
               </div>
                 <div class="btn-group me-2">
 
-                  <button type="button" class="btn btn-sm btn-outline-secondary">停止爬虫</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">停止</button>
                 </div>
 
 <!--                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">-->
@@ -163,7 +169,7 @@
 
 <!--      <canvas  id="myChart" width="900" height="380"></canvas>-->
 
-      <h2>爬虫结果</h2>
+      <h2>{{ username }}</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -179,14 +185,14 @@
           </thead>
 
 
-          <tbody>
-              <tr>
-                 {% for i in data %}
+          <tbody id="tablebody">
+<!--              <tr>-->
+<!--                 {% for i in data %}-->
 
-              <td> {{ i|safe }} </td>
+<!--              <td> {{ i|safe }} </td>-->
 
-          {% endfor %}
-           </tr>
+<!--          {% endfor %}-->
+<!--           </tr>-->
 
 
           </tbody>

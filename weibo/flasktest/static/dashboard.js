@@ -1,5 +1,33 @@
 /* globals Chart:false, feather:false */
 
+
+  $(document).ready(function(){ $('#show').click(function(){
+       $('#show').click(func(0))
+        setInterval(function (){func()},700)
+     });});
+  function func(f) {
+    console.log('no');
+    $.ajax({
+      'url':'/about',
+      'type':'get',
+      'data':{'flag':f},
+      success:function (data)
+      {$("#tablebody").append('<tr>')
+        var str=""
+        for(var i in data.data)
+        {
+          str+="<td>";
+          str+=data.data[i];
+          str+="</td>";
+        }
+        console.log("where is str"+str);
+        console.log(data);
+        $("#tablebody").append(str+'</tr>')
+      }
+    })};
+
+
+
 (function () {
   'use strict'
 
