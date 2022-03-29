@@ -21,10 +21,8 @@
         -moz-user-select: none;
         user-select: none;
       }
-      #td{
-        font-size:2px;
-        width:140px
-      }
+
+
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -50,20 +48,20 @@
 
 
 <div class="container-fluid">
-  <div class="row justify-content-around">
+  <div class="row ">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item ">
-            <a class="nav-link" aria-current="page" href="#">
-              <span data-feather="sun"></span>
-             待定
+            <a class="nav-link" aria-current="page" href="/chart/hotspot">
+              <span data-feather="align-left"></span>
+             时域热力图
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span data-feather="airplay"></span>
-              待定
+              <span data-feather="map-pin"></span>
+              地域热力图
             </a>
           </li>
           <li class="nav-item">
@@ -88,6 +86,19 @@
             <a class="nav-link" href="#">
               <span data-feather="layers"></span>
               待定
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span ></span>
+
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/index">
+               <div class="btn-group me-lg-2">
+                  <button type="button" style="margin-left: 20px;"  class="btn btn-sm btn-outline-secondary">返回主页</button>
+              </div>
             </a>
           </li>
         </ul>
@@ -125,6 +136,8 @@
 <!--          </li>-->
 <!--        </ul>-->
       </div>
+
+
     </nav>
 
 
@@ -150,12 +163,11 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
               <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-primary">开始</button>
-                  <button type="button" id="show" class="btn btn-sm btn-outline-secondary">数据展示</button>
+                  <button type="button" id="show" class="btn btn-sm btn-outline-primary">数据展示</button>
               </div>
                 <div class="btn-group me-2">
 
-                  <button type="button" class="btn btn-sm btn-outline-secondary">停止</button>
+                  <button type="button" id="stop" class="btn btn-sm btn-outline-secondary">隐藏展示</button>
                 </div>
 
 <!--                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">-->
@@ -169,23 +181,13 @@
 
 <!--      <canvas  id="myChart" width="900" height="380"></canvas>-->
 
-      <h2>{{ username }}</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">USERNAME</th>
-              <th scope="col">USERID</th>
-              <th scope="col">TIME</th>
-              <th scope="col">LOCATION</th>
-              <th scope="col">IPREGION</th>
-              <th scope="col">TEXT</th>
-            </tr>
-          </thead>
+
+<div id="img">
+
+{{mybar|safe}}
+</div>
 
 
-          <tbody id="tablebody">
 <!--              <tr>-->
 <!--                 {% for i in data %}-->
 
@@ -195,9 +197,8 @@
 <!--           </tr>-->
 
 
-          </tbody>
-        </table>
-      </div>
+
+
     </main>
   </div>
 </div>
@@ -206,6 +207,7 @@
     <script src="{{ url_for('static',filename='bootstrap.bundle.min.js') }}"></script>
 
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-<script src="{{ url_for('static',filename='dashboard.js') }}"></script>
+<script src="{{ url_for('static',filename='show.js') }}"></script>
+   <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
   </body>
 </html>

@@ -30,8 +30,8 @@ class WeiboPipeline:
         #data=item['USERNAME']+','+str(item['USERID'])+','+item['TIME']+','+item['LOCATION']+','+item['TEXT']
 
         data = '\''+str(item['USERNAME'])+'\',\'' + str(item['USERID']) + '\',\''+str(item['TIME'])+'\',\''+str(item['LOCATION'])+'\',\''+str(item['IPREGION'])+'\',\''+str(item['TEXT'].replace('\'','\"')+'\'')
-        with open('111.html', 'a', encoding='utf-8') as f:
-            f.write(data)
+        # with open('111.html', 'a', encoding='utf-8') as f:
+        #     f.write(data)
         # print(data)
         # print('insert into text(username,userid,time,location,text)values('+data+');')
         self.flag.execute(

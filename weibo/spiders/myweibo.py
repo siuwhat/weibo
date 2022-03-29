@@ -2,6 +2,10 @@ import random
 import scrapy
 import json
 
+
+from pydispatch import dispatcher
+from scrapy import signals
+from scrapy.signalmanager import SignalManager
 import weibo.items
 from weibo.timer import TimeFormatTransform
 from weibo.geo import getgeo
@@ -16,6 +20,14 @@ class MyweiboSpider(scrapy.Spider):
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname='114.104.210.66', port=20402, username='root', password='nU8tW3tT2uN3')
+    start_urls=['']
+    def __init__(self):
+        with open('starturls.txt','r') as f:
+            self.start_urls[0]=f.read().replace('search?containerid=231522type%3D1%26t%3D10','api/container/getIndex?containerid=231522type%3D60')
+        SignalManager(dispatcher.Any).connect(
+            self.close, signal=signals.spider_closed)
+
+        # 退出函数
 
     cookies=[
 
@@ -88,9 +100,9 @@ class MyweiboSpider(scrapy.Spider):
         {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24'}
     ]
-    start_urls=['https://m.weibo.cn/search?containerid=231522type%3D1%26t%3D10%26q%3D%23%E4%B8%9C%E8%88%AA%E5%9D%A0%E6%AF%81%E8%88%AA%E7%8F%AD%E4%B8%8A%E5%85%B1132%E4%BA%BA%23&extparam=%23%E4%B8%9C%E8%88%AA%E5%9D%A0%E6%AF%81%E8%88%AA%E7%8F%AD%E4%B8%8A%E5%85%B1132%E4%BA%BA%23&luicode=10000011&lfid=100103type%3D38%26q%3D%E4%B8%9C%E8%88%AA%26t%3D0']
+   # start_urls=['https://m.weibo.cn/search?containerid=231522type%3D1%26t%3D10%26q%3D%23%E4%B8%9C%E8%88%AA%E5%9D%A0%E6%AF%81%E8%88%AA%E7%8F%AD%E4%B8%8A%E5%85%B1132%E4%BA%BA%23&extparam=%23%E4%B8%9C%E8%88%AA%E5%9D%A0%E6%AF%81%E8%88%AA%E7%8F%AD%E4%B8%8A%E5%85%B1132%E4%BA%BA%23&luicode=10000011&lfid=100103type%3D38%26q%3D%E4%B8%9C%E8%88%AA%26t%3D0']
    # url=['https://m.weibo.cn/api/container/getIndex?containerid=231522type%3D60%26q%3D%23%E4%B8%9C%E8%88%AA%E5%9D%A0%E6%AF%81%E8%88%AA%E7%8F%AD%E4%B8%8A%E5%85%B1132%E4%BA%BA%23%26t%3D10&extparam=%23%E4%B8%9C%E8%88%AA%E5%9D%A0%E6%AF%81%E8%88%AA%E7%8F%AD%E4%B8%8A%E5%85%B1132%E4%BA%BA%23&luicode=10000011&lfid=100103type%3D38%26q%3D%E4%B8%9C%E8%88%AA%26t%3D0&page_type=searchall']
-    start_urls[0] =start_urls[0].replace('search?containerid=231522type%3D1%26t%3D10','api/container/getIndex?containerid=231522type%3D60')
+    #start_urls[0] =start_urls[0].replace('search?containerid=231522type%3D1%26t%3D10','api/container/getIndex?containerid=231522type%3D60')
     def changeip(self):
         print('到点了，定时换号ip')
         stdin, stdout, stderr = self.client.exec_command('pppoe-stop')
@@ -171,9 +183,6 @@ class MyweiboSpider(scrapy.Spider):
                     item['TEXT'] = text
                     yield item
             yield scrapy.Request(url=url, headers=header, cookies=cookie, callback=self.comment_parse, meta=response.meta)
-
-
-
 
 
 

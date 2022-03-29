@@ -1,33 +1,28 @@
-/* globals Chart:false, feather:false */
+$(document).ready(function(){ $('#stop').click(function(){
+       $('#stop').click(
+
+               $('#img').empty()
 
 
-  $(document).ready(function(){ $('#show').click(function(){
-       $('#show').click(func(0))
-        setInterval(function (){func()},700)
+       )
+
      });});
-  function func(f) {
-    console.log('no');
+$(document).ready(function(){ $('#show').click(function(){
+       $('#show').click(func())
+
+     });});
+
+function func() {
     $.ajax({
-      'url':'/about',
+      'url':'/chart/hotspot_show',
       'type':'get',
-      'data':{'flag':f},
-      success:function (data)
-      {$("#tablebody").append('<tr>')
-        var str=""
-        for(var i in data.data)
-        {
-          str+="<td>";
-          str+=data.data[i];
-          str+="</td>";
-        }
-        console.log("where is str"+str);
+      success:function (data){
+$("#img").append("<img  src=\'"+data+"\' width='1080px' height='600px' >")
+
+
         console.log(data);
-        $("#tablebody").append(str+'</tr>')
       }
-    })};
-
-
-
+    })}
 (function () {
   'use strict'
 
