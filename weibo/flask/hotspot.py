@@ -1,9 +1,7 @@
 import pymysql
-import numpy as np 
 from pyecharts import options as opts
 from pyecharts.charts import Bar
 from datetime import datetime
-from pyecharts.faker import Faker
 from pyecharts.globals import ThemeType
 
 
@@ -37,7 +35,7 @@ x=[datetime.strptime(timer(k),'%Y-%m-%d').date() for k in count().keys()]
 y=count().values()
 
 def mybar():
-    return (Bar(init_opts=opts.InitOpts(width="1080px",height="600px",theme=ThemeType.SHINE),)
+    return (Bar(init_opts=opts.InitOpts(width="1280px",height="600px",theme=ThemeType.SHINE),)
        .add_xaxis(x)
        .add_yaxis('每日评论数',list(y))
        .set_global_opts(title_opts=opts.TitleOpts(title="时域热点图",pos_left="60px",title_textstyle_opts=opts.TextStyleOpts(font_style="oblique")),
@@ -45,7 +43,7 @@ def mybar():
                         legend_opts=opts.LegendOpts(is_show=False),
                         tooltip_opts=opts.TooltipOpts(trigger="axis",trigger_on="mousemove"),
                         toolbox_opts=opts.ToolboxOpts(feature=opts.ToolBoxFeatureOpts(data_zoom=None,brush=None,magic_type=opts.ToolBoxFeatureMagicTypeOpts(type_=["line","bar"]),data_view=None)),
-                        datazoom_opts=opts.DataZoomOpts(range_start=0,range_end=100)
+                        datazoom_opts=opts.DataZoomOpts(range_start=0,range_end=100),
                         ).render_embed())
 
 

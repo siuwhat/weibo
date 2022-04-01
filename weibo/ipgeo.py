@@ -13,6 +13,6 @@ def getipgeo(headers, cookies, id, ip):
         if data.get('region')!=None:
             return data.get('region')
         else:
-            return 'ip属地:暂无'
+            return 'ip属地：暂无'
     else:
         return 'ip属地:暂无'

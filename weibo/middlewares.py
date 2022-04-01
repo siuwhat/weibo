@@ -10,6 +10,7 @@ import time
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
 
+ip_pools=[]
 
 class WeiboSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,

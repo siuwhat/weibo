@@ -1,28 +1,29 @@
-$(document).ready(function(){ $('#stop').click(function(){
-       $('#stop').click(
-
-               $('#img').empty()
-
-
-       )
-
-     });});
-$(document).ready(function(){ $('#show').click(function(){
-       $('#show').click(func())
-
-     });});
-
-function func() {
-    $.ajax({
-      'url':'/chart/hotspot_show',
-      'type':'get',
-      success:function (data){
-$("#img").append("<img  src=\'"+data+"\' width='1080px' height='600px' >")
-
-
-        console.log(data);
-      }
-    })}
+// $(document).ready(function(){ $('#stop').click(function(){
+//        $('#stop').click(
+//
+//                $('#img').empty()
+//
+//
+//        )
+//
+//      });});
+// $(document).ready(function(){ $('#show').click(function(){
+//        $('#show').click(func()
+// )
+//
+//      });});
+//
+// function func() {
+//     $.ajax({
+//       'url':'/chart/hotspot_show',
+//       'type':'get',
+//       success:function (data){
+// $("#img").append(data);
+//
+//
+//         console.log(data);
+//       }
+//     })}
 (function () {
   'use strict'
 

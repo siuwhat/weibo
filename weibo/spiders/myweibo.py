@@ -10,6 +10,7 @@ import weibo.items
 from weibo.timer import TimeFormatTransform
 from weibo.geo import getgeo
 from weibo.ipgeo import getipgeo
+from weibo.middlewares import ip_pools
 import paramiko
 import time
 class MyweiboSpider(scrapy.Spider):
@@ -28,35 +29,49 @@ class MyweiboSpider(scrapy.Spider):
             self.close, signal=signals.spider_closed)
 
         # 退出函数
-
+    ip_pools=[]
     cookies=[
-
 
         {
 
-                "_T_WM": "92662429333",
+                "_T_WM": "28752832714",
                 "loginScene": "102003",
                 "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
                 "MLOGIN": "1",
-                "SUB": "_2A25PODZoDeRhGeFJ71QX9CvIzzuIHXVsw1ogrDV6PUJbkdAKLXbfkW1Nf8flhDHq0VgUnPbLUe-8QU-L_ppSbZeV",
+                "SUB": "_2A25PQqY-DeRhGeBI4lAU8y_Ezz6IHXVszMp2rDV6PUJbkdAKLRbMkW1NRn2D3UGs5MLqArRSP56GDkA7B2sPTC5C",
                 "WEIBOCN_FROM": "1110006030",
-                "XSRF-TOKEN": "29cc38"
+                "XSRF-TOKEN": "4f68ae"
 
         }
         ,
         {
-
-                "_T_WM": "99795518178",
-                "ALF": "1650709181",
+                "_T_WM": "37249435170",
                 "loginScene": "102003",
                 "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
                 "MLOGIN": "1",
-                "SCF": "AlqSy6RfYVU-NHULFqdZt86ULGHicGIe5bwVzD4MVik6GBEwjQRHD3NKymP6M6rEp8MwjPqnTqh6srf-KtuirNE.",
-                "SSOLoginState": "1648117181",
-                "SUB": "_2A25PODXsDeRhGeBI4lAU8y_Ezz6IHXVsw1ukrDV6PUJbktCOLUHlkW1NRn2D3XuJcWsyF_mYOUasJ-B9rVL3ulRy",
-                "SUBP": "0033WrSXqPxfM725Ws9jqgMF55529P9D9W52_FbY_zGukV0FV9rlYpji5JpX5K-hUgL.Foqc1Kzfe02RShz2dJLoIEBLxKBLBo.L1K5LxKqLB-BLBKeLxK.L1-zLB.-LxKqLBoeLBK5t",
+                "SUB": "_2A25PQqa7DeRhGeFJ71QX9CvIzzuIHXVszMrzrDV6PUJbkdANLUTskW1Nf8flhF68C0DkliHzAPyYsze1ae6KXeqZ",
                 "WEIBOCN_FROM": "1110006030",
-                "XSRF-TOKEN": "7a9e9a"
+                "XSRF-TOKEN": "c4cb9c"
+
+        },
+        {
+                "_T_WM": "48231368342",
+                "loginScene": "102003",
+                "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
+                "MLOGIN": "1",
+                "SUB": "_2A25PQqiwDeRhGeBI4lAU8y_Ezz6IHXVszMj4rDV6PUJbkdB-LWPbkW1NRn2D3VfSTZ0xZjZsUJBkvMTzLuURR8OM",
+                "WEIBOCN_FROM": "1110006030",
+                "XSRF-TOKEN": "ee7a36"
+
+        },
+        {
+                "_T_WM": "81983068356",
+                "loginScene": "102003",
+                "M_WEIBOCN_PARAMS": "oid=4752052762970858&lfid=102803&luicode=20000174&uicode=20000174",
+                "MLOGIN": "1",
+                "SUB": "_2A25PQqnYDeRhGeFJ71QX9CvIzzuIHXVszDeQrDV6PUJbkdB-LRXDkW1Nf8flhDUnRiY8Bny8UcpIVgZ3VSGY2jCx",
+                "WEIBOCN_FROM": "1110006030",
+                "XSRF-TOKEN": "262def"
 
         }
     ]

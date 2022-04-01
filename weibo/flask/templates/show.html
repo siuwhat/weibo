@@ -8,7 +8,6 @@
     <title>数据分析展示</title>
 
 
-
 <script src="{{ url_for('static',filename='jquery.min.js') }}"></script>
 
 
@@ -38,7 +37,7 @@
   <body>
     
 <header class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 ">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="https://www.baidu.com"> Data Analysis </a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/"> Data Analysis </a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -54,20 +53,20 @@
         <ul class="nav flex-column">
           <li class="nav-item ">
             <a class="nav-link" aria-current="page" href="/chart/hotspot">
-              <span data-feather="align-left"></span>
-             时域热力图
+              <span data-feather="bar-chart"></span>
+             时域热点图
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/chart/mapspot">
               <span data-feather="map-pin"></span>
-              地域热力图
+              地域热点图
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart"></span>
-              待定
+            <a class="nav-link" href="/chart/wordcloud">
+              <span data-feather="cloud"></span>
+              词云图
             </a>
           </li>
           <li class="nav-item">
@@ -184,7 +183,7 @@
 
 <div id="img">
 
-{{mybar|safe}}
+
 </div>
 
 
@@ -209,5 +208,33 @@
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
 <script src="{{ url_for('static',filename='show.js') }}"></script>
    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+<script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/china.js"></script>
+<script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts-wordcloud.min.js"></script>
+
+<script>
+$(document).ready(function(){ $('#stop').click(function(){
+       $('#stop').click(
+               $('#img').empty()
+       )
+
+     });});
+$(document).ready(function(){ $('#show').click(function(){
+       $('#show').click(func()
+)
+
+     });});
+
+function func() {
+    $.ajax({
+      'url':'{{ url }}',
+      'type':'get',
+      success:function (data){
+$("#img").append(data);
+        console.log(data);
+      }
+    })}
+
+
+</script>
   </body>
 </html>
