@@ -3,6 +3,8 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+
+
 from scrapy import signals
 import paramiko
 import random
@@ -10,7 +12,9 @@ import time
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
 
-ip_pools=[]
+client = paramiko.SSHClient()
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+client.connect(hostname='114.104.210.66', port=20402, username='root', password='nU8tW3tT2uN3')
 
 class WeiboSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
@@ -106,9 +110,7 @@ class WeiboDownloaderMiddleware:
         spider.logger.info('Spider opened: %s' % spider.name)
 
 class ProxyMiddleware(object):
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(hostname='114.104.210.66', port=20402, username='root', password='nU8tW3tT2uN3')
+
     PROXY_IP_LIST = []
     @classmethod
     def from_crawler(cls, crawler):
@@ -116,7 +118,7 @@ class ProxyMiddleware(object):
 
     def GetIp(self):
         # 打开一个Channel并执行命令
-        stdin, stdout, stderr = self.client.exec_command('ifconfig  ppp0 | awk \'{print $2}\'|awk "NR==2"')
+        stdin, stdout, stderr = client.exec_command('ifconfig  ppp0 | awk \'{print $2}\'|awk "NR==2"')
         result = stdout.read().decode('utf-8')
         self.PROXY_IP_LIST.append(result)
 
@@ -138,8 +140,8 @@ class ProxyMiddleware(object):
         print('ip为: '+request.meta['proxy'])
         return request
     def changeip(self):
-        stdin, stdout, stderr = self.client.exec_command('pppoe-stop')
-        stdin, stdout, stderr = self.client.exec_command('pppoe-start')
+        stdin, stdout, stderr = client.exec_command('pppoe-stop')
+        stdin, stdout, stderr = client.exec_command('pppoe-start')
         time.sleep(10)
         self.PROXY_IP_LIST.clear()
         self.GetIp()

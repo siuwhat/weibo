@@ -25,7 +25,7 @@ CONCURRENT_REQUESTS = 10
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 2.5
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -72,7 +72,7 @@ custom_settings = {
     }
 }
 RETRY_ENABLED = True  #打开重试开关
-RETRY_TIMES = 2  #重试次数
+RETRY_TIMES = 3  #重试次数
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {

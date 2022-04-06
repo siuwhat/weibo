@@ -10,13 +10,12 @@ import weibo.items
 from weibo.timer import TimeFormatTransform
 from weibo.geo import getgeo
 from weibo.ipgeo import getipgeo
-from weibo.middlewares import ip_pools
 import paramiko
 import time
 class MyweiboSpider(scrapy.Spider):
     name = 'myweibo'
     allowed_domains = ['m.weibo.cn']
-    page=1
+    page=15
     count=0
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -25,11 +24,8 @@ class MyweiboSpider(scrapy.Spider):
     def __init__(self):
         with open('starturls.txt','r') as f:
             self.start_urls[0]=f.read().replace('search?containerid=231522type%3D1%26t%3D10','api/container/getIndex?containerid=231522type%3D60')
-        SignalManager(dispatcher.Any).connect(
-            self.close, signal=signals.spider_closed)
 
         # 退出函数
-    ip_pools=[]
     cookies=[
 
         {
@@ -155,18 +151,24 @@ class MyweiboSpider(scrapy.Spider):
                     yield scrapy.Request(url=comment_url, headers=header, cookies=cookie, callback=self.comment_parse,
                                          meta={'url': comment_url, 'key':title})
             url = self.start_urls[0] + '&page=' + str(self.page)
+            with open('starturls.txt', 'a') as f:
+                f.write('\n'+url)
             yield scrapy.Request(url=url, headers=header, cookies=cookie, callback=self.parse)
         else:
+            print("到底了")
             self.crawler.engine.close_spider(self,"到底了!")
     def comment_parse(self, response):
+
         body = json.loads(response.text,strict=False)
         item=weibo.items.WeiboItem()
         header = random.choice(self.headers)
         cookie = random.choice(self.cookies)
+
         stdin, stdout, stderr = self.client.exec_command(
             'ifconfig  ppp0 | awk \'{print $2}\'|awk "NR==2"')
         result = stdout.read().decode('utf-8')
         ip = {'http': result + ':8888'}
+        print(ip)
         if body.get('ok') == 1:
             datas = body.get('data')
             data = datas.get('data')
@@ -174,9 +176,15 @@ class MyweiboSpider(scrapy.Spider):
             url = response.meta.get('url') + '&max_id=' + str(max_id)
             for t in data:
                 self.count=self.count+1
-                if self.count % 2000==0:
+                print("当前第" + str(self.count) + "条")
+                if self.count % 2000 == 0:#你要记住这一点，一旦转换了原来有的ip就会失效
                     self.changeip()
-                elif self.count==10000:
+                    stdin, stdout, stderr = self.client.exec_command(
+                        'ifconfig  ppp0 | awk \'{print $2}\'|awk "NR==2"')
+                    result = stdout.read().decode('utf-8')
+                    ip = {'http': result + ':8888'}
+                    print(ip)
+                if self.count==10000:
                     self.crawler.engine.close_spider(self,"10000条达成!")
                 else:
                     user = t.get('user')

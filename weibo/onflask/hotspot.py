@@ -14,7 +14,7 @@ def count():
     numlist={}
     for tablename in table_list:
         print(tablename[0])
-        if '2022'in tablename[0]:
+        if '20'in tablename[0]:
             flag.execute('select count(*) from '+tablename[0]+';')
             num=flag.fetchone()[0]
             name=tablename[0].replace('text','')
