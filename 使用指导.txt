@@ -1,3 +1,0 @@
-用scrapy进行爬虫，将数据导入mysql spider库中的text表
-然后利用quchong.py 对text表进行去重操作
-然后利用insertmysql.py对text按照日期重新划分时间表
