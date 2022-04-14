@@ -54,19 +54,18 @@ def allreg():
                 dict[reg] = dict[reg] + 1
             else:
                 dict[reg] = 1
-    print(dict)
     return dict
 def sort_dict(mydict):
     dict={}
     list=sorted(mydict.items(),key=lambda d:d[-1],reverse=True)
-    print(list)
+    # print(list)
     for i in list:
         reg=i[0]
         dict[reg] = i[1]
 
     return dict
 
-print(sort_dict(allreg()))
+# print(sort_dict(allreg()))
 def mygeo():
     map=(Map(init_opts=opts.InitOpts(width="1050px", height="600px"))
     .add(series_name='地域热点', data_pair=allgeo(), maptype='china', aspect_scale=0.8, )

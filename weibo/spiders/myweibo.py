@@ -1,11 +1,6 @@
 import random
 import scrapy
 import json
-
-
-from pydispatch import dispatcher
-from scrapy import signals
-from scrapy.signalmanager import SignalManager
 import weibo.items
 from weibo.timer import TimeFormatTransform
 from weibo.geo import getgeo
@@ -15,17 +10,18 @@ import time
 class MyweiboSpider(scrapy.Spider):
     name = 'myweibo'
     allowed_domains = ['m.weibo.cn']
-    page=15
+    page=1
     count=0
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname='114.104.210.66', port=20402, username='root', password='nU8tW3tT2uN3')
     start_urls=['']
-    def __init__(self):
+    def __init__(self, spider, **kwargs):
+        super().__init__(**kwargs)
         with open('starturls.txt','r') as f:
             self.start_urls[0]=f.read().replace('search?containerid=231522type%3D1%26t%3D10','api/container/getIndex?containerid=231522type%3D60')
 
-        # 退出函数
+#添加访问微博的cookie
     cookies=[
 
         {

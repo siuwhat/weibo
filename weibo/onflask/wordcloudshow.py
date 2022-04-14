@@ -10,7 +10,7 @@ import pymysql
 import wordcloud
 def getstopstr():
     stopstr=""
-    with open("stopwords.txt","r",encoding="utf-8") as f:
+    with open("static/file/txt/stopwords.txt","r",encoding="utf-8") as f:
         for i in f.readlines():
             stopstr=stopstr+i.strip()
     return stopstr
@@ -57,7 +57,7 @@ def get_wordlist():
     # print(newlist)
     return newlist
 def mywdcd():
-    return (WordCloud(init_opts=opts.InitOpts(width="1600px",height="1000px")).add(series_name="热点分析",data_pair=gaoping(),shape="cursive",word_size_range=[14,66],mask_image="plane.png",word_gap=5,pos_top="10%",pos_left="10px")
+    return (WordCloud(init_opts=opts.InitOpts(width="1600px",height="1000px")).add(series_name="热点分析",data_pair=gaoping(),shape="cursive",word_size_range=[14,66],mask_image="static/file/png/plane.png",word_gap=5,pos_top="10%",pos_left="10px")
             .set_global_opts(
         title_opts=opts.TitleOpts(
             title="热点分析词云图", title_textstyle_opts=opts.TextStyleOpts(font_size=28),pos_top="10%"

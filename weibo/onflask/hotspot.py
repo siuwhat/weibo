@@ -10,16 +10,16 @@ def count():
     flag = db.cursor()
     flag.execute('show tables;')
     table_list = flag.fetchall()
-    print(table_list)
+    # print(table_list)
     numlist={}
     for tablename in table_list:
-        print(tablename[0])
+        # print(tablename[0])
         if '20'in tablename[0]:
             flag.execute('select count(*) from '+tablename[0]+';')
             num=flag.fetchone()[0]
             name=tablename[0].replace('text','')
             numlist[name]=num
-    print(numlist)
+    # print(numlist)
     return numlist
 
 def timer(timetext):
@@ -28,9 +28,10 @@ def timer(timetext):
    day=timetext[6:len(timetext)+1]
    timelist=[year,mon,day]
    return '-'.join(timelist)
-for k,v in count().items():
-    print(timer(k))
-    str=datetime.strptime(timer(k),'%Y-%m-%d').date()
+
+# for k,v in count().items():
+#     print(timer(k))
+#     str=datetime.strptime(timer(k),'%Y-%m-%d').date()
 x=[datetime.strptime(timer(k),'%Y-%m-%d').date() for k in count().keys()]
 y=count().values()
 

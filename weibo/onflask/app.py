@@ -1,5 +1,6 @@
+import json
 import time
-
+import requests
 from flask import Flask,jsonify,url_for,request,redirect,render_template
 import pymysql
 from charts import chart
@@ -15,6 +16,17 @@ a = [
     {'2': '红楼梦','res':''},
     {'3': '西游记','res':''}
 ]
+def get_title():
+    with open('../../starturls.txt','r') as f:
+        url=f.read().replace('search?containerid=231522type%3D1%26t%3D10','api/container/getIndex?containerid=231522type%3D60')
+        print(url)
+        r=requests.get(url=url,)
+        body = json.loads(r.text, strict=False)
+        data=body.get('data')
+        info=data.get('cardlistInfo')
+        title=info.get('title_top')
+        return title.strip('-').strip('#')
+
 @app.route('/about',methods=['GET'])
 def about():
     f = request.args.get('flag')
@@ -58,7 +70,8 @@ def book():
 
 @app.route('/index')
 def index():  # put application's code here
-    return render_template("index.html")
+    title_dict={'title':get_title()}
+    return render_template("index.html",**title_dict)
 
 def if_exists(name):
     curse.execute('show tables;')
