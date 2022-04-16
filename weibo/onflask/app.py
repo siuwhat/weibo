@@ -9,13 +9,8 @@ db = pymysql.connect(host='localhost', passwd='root', user='root', database='spi
 curse= db.cursor()
 
 app = Flask(__name__)
-app.register_blueprint(chart)
-a = [
-    {'0': '水浒传','res':''},
-    {'1': '三国演义','res':''},
-    {'2': '红楼梦','res':''},
-    {'3': '西游记','res':''}
-]
+app.register_blueprint(chart)#注册chart蓝图
+
 def get_title():
     with open('../../starturls.txt','r') as f:
         url=f.read().replace('search?containerid=231522type%3D1%26t%3D10','api/container/getIndex?containerid=231522type%3D60')
@@ -55,17 +50,6 @@ def about():
     # return render_template('index.html',**user)
 
 
-@app.route('/booklist')
-def book_list(id):
-
-    return jsonify(a[id][str(id)])
-
-@app.route('/book')
-def book():
-    for i in range(len(a)):
-        a[i]['res']=url_for('book_list',id=i)
-    print(a)
-    return jsonify(a)
 
 
 @app.route('/index')

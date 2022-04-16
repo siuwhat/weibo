@@ -1,5 +1,5 @@
-# Scrapy settings for weibo project
-#
+# 这是本项目的爬虫设定区
+#为了简单起见，这个文件仅仅包含被认为是重要的或者普遍的用法，你可以寻找更多设定咨询在一下网页
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
 #
@@ -20,12 +20,12 @@ NEWSPIDER_MODULE = 'weibo.spiders'
 ROBOTSTXT_OBEY = False
 USER_AGENT='Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 10
+CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 10
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -59,7 +59,7 @@ DOWNLOADER_MIDDLEWARES = {
    # 'weibo.middlewares.WeiboDownloaderMiddleware': 543,
    'weibo.middlewares.ProxyMiddleware': 100,
 }
-DOWNLOAD_TIMEOUT = 15
+DOWNLOAD_TIMEOUT = 25
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {

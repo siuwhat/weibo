@@ -1,5 +1,4 @@
-import time
-
+#本代码用sql语句进行去重，仅此而已
 import pymysql
 
 db = pymysql.connect(host='localhost', passwd='root', user='root', database='spider')

@@ -45,4 +45,8 @@ def filter_str(string):
     if "//" in str:
         str=filter_slash(str)
     str=filter_emoji(str)
+    if "回复" in str:
+        str=str.replace("回复","")
     return str
+
+print(filter_str("回复<a href=/n/我常威并不会武功>@我常威并不会武功</a>:这个全果都这样，不必黑<img alt=\"[doge]\" title=\"[doge]\" src=\"https://face.t.sinajs.cn/t4/appstyle/expression/ext/normal/a1/2018new_doge02_org.png\" /><img alt=\"[doge]\" title=\"[doge]\" src=\"https://face.t.sinajs.cn/t4/appstyle/expression/ext/normal/a1/2018new_doge02_org.png\" /><img alt=\"[doge]\" title=\"[doge]\" src=\"https://face.t.sinajs.cn/t4/appstyle/expression/ext/normal/a1/2018new_doge02_org.png\" />"))

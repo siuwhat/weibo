@@ -110,7 +110,7 @@ class WeiboDownloaderMiddleware:
         spider.logger.info('Spider opened: %s' % spider.name)
 
 class ProxyMiddleware(object):
-
+#设置代理ip的服务器
     PROXY_IP_LIST = []
     @classmethod
     def from_crawler(cls, crawler):
