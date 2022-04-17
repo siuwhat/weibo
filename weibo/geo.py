@@ -1,3 +1,4 @@
+# encoding=gbk
 import requests
 import random
 import json
@@ -6,10 +7,10 @@ from requests.adapters import HTTPAdapter
 
 def getgeo(headers,cookies,id,ip):
     s = requests.session()
-    # max_retries=3 é‡è¯•3æ¬¡
+    # max_retries=3 ÖØÊÔ3´Î
     s.mount('https://', HTTPAdapter(max_retries=3))
     r=s.request("GET",url='https://weibo.com/ajax/profile/info?uid='+str(id),headers=random.choice(headers),cookies=random.choice(cookies),proxies=ip,timeout=10)
-    #headersä¼ å…¥çš„æ˜¯headeræ± ï¼Œcookiesä¹Ÿæ˜¯cookieæ± ï¼ŒipæŒ‰ç…§å›ºå®šçš„æ ¼å¼{'http':"yourip:"+"yourport"}
+    #headers´«ÈëµÄÊÇheader³Ø£¬cookiesÒ²ÊÇcookie³Ø£¬ip°´ÕÕ¹Ì¶¨µÄ¸ñÊ½{'http':"yourip:"+"yourport"}
     #r=requests.get('https://weibo.com/ajax/profile/info?uid='+str(id),headers=random.choice(headers),cookies=random.choice(cookies),proxies=ip,timeout=10)
 
     if r.text!=None:
@@ -21,6 +22,6 @@ def getgeo(headers,cookies,id,ip):
                 if user.get('location') != None:
                     return user.get('location')
                 else:
-                    return 'æš‚æ— åœ°åŒº'
+                    return 'ÔİÎŞµØÇø'
             else:
-                return 'æš‚æ— åœ°åŒº'
+                return 'ÔİÎŞµØÇø'

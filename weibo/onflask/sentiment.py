@@ -7,6 +7,8 @@ from pyecharts.charts import Line
 from pyecharts import options as opts
 from hotspot import timer,count
 import csv
+from export_senti import export
+
 
 def getstopstr():
     stopstr=""
@@ -68,10 +70,13 @@ def get_timelist():
     print(x)
     return x
 
+def export_sentiment():
+    export()
+
 def mysenti():
+    export_sentiment()
     sentilist=get_mean_senti()
     x_list=get_timelist()
-    export_senti()
     line=(Line(init_opts=opts.InitOpts(width="1200px",height="600px")).add_xaxis(xaxis_data=x_list).add_yaxis(series_name="ÇéÐ÷Öµ",y_axis=sentilist,color="black",symbol_size=8,is_hover_animation=False,label_opts=opts.LabelOpts(is_show=False),is_smooth=True, linestyle_opts=opts.LineStyleOpts(width=1.5),)
           .set_global_opts(tooltip_opts=opts.TooltipOpts(trigger='axis'),
                            datazoom_opts=opts.DataZoomOpts(type_='inside'),

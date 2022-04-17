@@ -1,14 +1,16 @@
 import json
-import os.path
-import sys
-
 import requests
-from flask import Blueprint,render_template,url_for
+from flask import Blueprint, render_template, url_for, request
 from hotspot import mybar
 from mapspot import mygeo
-from weibo.onflask.sentipie import mypie
+from sentipie import mypie
+from create_model import make_model
+from kmeans import make_kmeans
 from wordcloudshow import mywdcd
 from sentiment import mysenti
+from sentiliquid import myliquid
+from get_img import make_img
+
 
 def get_title():
     with open('../../starturls.txt','r') as f:
@@ -20,9 +22,10 @@ def get_title():
         title=info.get('title_top')
         return title.strip('-').strip('#')
 
-
 title=get_title()
 chart=Blueprint('chart',__name__,url_prefix='/chart')
+word=Blueprint('word',__name__,url_prefix='/word')
+
 @chart.route('/hotspot')
 def show():
     return render_template('show.html',**{'url':'/chart/hotspot_show','title':title})
@@ -62,3 +65,25 @@ def pie():
 @chart.route('/pie_show')
 def pie_show():
     return mypie()
+
+@chart.route('/liquid')
+def liquid():
+    return render_template('show.html',**{'url':'/chart/liquid_show','title':title})
+
+@chart.route('/liquid_show')
+def liquid_show():
+    return myliquid()
+
+
+@word.route('/show')
+def kmeans():
+    make_model()
+    make_img()
+    return render_template('kmeans.html',**{'url':'static/file/png/sse.png','title':title})
+
+@word.route('/make_kmeans',methods=['GET'])
+def kmeans_show():
+    num=int(request.args.get('number'))
+    print(make_kmeans(num))
+    return {'data':1}
+

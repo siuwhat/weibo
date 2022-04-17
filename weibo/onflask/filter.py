@@ -15,9 +15,7 @@ def filter_span_a(string):
             else:
                 flag=False
         else:
-            if s != '>':
-                continue
-            else:
+            if s == '>':
                 flag=True
     return str
 def filter_at(string):
@@ -34,12 +32,28 @@ def filter_at(string):
                 flag=True
     return str
 
+def filter_hash(string):
+    str = ""
+    flag = True
+    for s in string:
+        if flag:
+            if s != "#":
+                str = str + s
+            else:
+                flag = False
+        else:
+            if s == "#":
+                flag = True
+    return str
+
 def filter_slash(string):
     return string.replace("//"," ")
 def filter_str(string):
     str=string
     if "<span" in str or "<a" in str:  ##过滤含有<span> 和 <a>的语句
         str=filter_span_a(str)
+    if "#" in str:
+        str=filter_hash(str)
     if "@" in str:
         str=filter_at(str)
     if "//" in str:
@@ -49,4 +63,4 @@ def filter_str(string):
         str=str.replace("回复","")
     return str
 
-print(filter_str("回复<a href=/n/我常威并不会武功>@我常威并不会武功</a>:这个全果都这样，不必黑<img alt=\"[doge]\" title=\"[doge]\" src=\"https://face.t.sinajs.cn/t4/appstyle/expression/ext/normal/a1/2018new_doge02_org.png\" /><img alt=\"[doge]\" title=\"[doge]\" src=\"https://face.t.sinajs.cn/t4/appstyle/expression/ext/normal/a1/2018new_doge02_org.png\" /><img alt=\"[doge]\" title=\"[doge]\" src=\"https://face.t.sinajs.cn/t4/appstyle/expression/ext/normal/a1/2018new_doge02_org.png\" />"))
+#print(filter_str('<a  href="https://m.weibo.cn/search?containerid=231522type%3D1%26t%3D10%26q%3D%23%E9%95%BF%E6%98%A5%E5%AE%BD%E5%9F%8E+%E9%98%B2%E7%96%AB%23&extparam=%23%E9%95%BF%E6%98%A5%E5%AE%BD%E5%9F%8E+%E9%98%B2%E7%96%AB%23" data-hide=""><span class="surl-text">#长春宽城 防疫#</span></a> 离了个大谱 出不了门 抢不到菜 还没有物资支援 社区一刀切死统统封闭 老百姓在家等死吗<span class="url-icon"><img alt=[太开心] src="https://h5.sinaimg.cn/m/emoticon/icon/default/d_taikaixin-b7d86de3fd.png" style="width:1em; height:1em;" /></span>就这就这<span class="url-icon"><img alt=[太开心] src="https://h5.sinaimg.cn/m/emoticon/icon/default/d_taikaixin-b7d86de3fd.png" style="width:1em; height:1em;" /></span><span class="url-icon"><img alt=[太开心] src="https://h5.sinaimg.cn/m/emoticon/icon/default/d_taikaixin-b7d86de3fd.png" style="width:1em; height:1em;" /></span><span class="url-icon"><img alt=[太开心] src="https://h5.sinaimg.cn/m/emoticon/icon/default/d_taikaixin-b7d86de3fd.png" style="width:1em; height:1em;" /></span><span class="url-icon"><img alt=[太开心] src="https://h5.sinaimg.cn/m/emoticon/icon/default/d_taikaixin-b7d86de3fd.png" style="width:1em; height:1em;" /></span>'))

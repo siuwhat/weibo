@@ -1,10 +1,10 @@
+# encoding=gbk
 from pyecharts import options as opts
 from pyecharts.charts import Map,Grid,Bar
-from pyecharts.faker import Faker
 import pymysql
 from pyecharts.globals import ThemeType
 
-allregiondict="æ²³åŒ—å±±è¥¿è¾½å®å‰æ—é»‘é¾™æ±Ÿæ±Ÿè‹æµ™æ±Ÿå®‰å¾½ç¦å»ºæ±Ÿè¥¿å±±ä¸œæ²³å—æ¹–åŒ—æ¹–å—å¹¿ä¸œæµ·å—å››å·è´µå·äº‘å—é™•è¥¿ç”˜è‚ƒé’æµ·å°æ¹¾å†…è’™å¤å¹¿è¥¿è¥¿è—å®å¤æ–°ç–†åŒ—äº¬å¤©æ´¥ä¸Šæµ·é‡åº†é¦™æ¸¯æ¾³é—¨"
+allregiondict="ºÓ±±É½Î÷ÁÉÄş¼ªÁÖºÚÁú½­½­ËÕÕã½­°²»Õ¸£½¨½­Î÷É½¶«ºÓÄÏºş±±ºşÄÏ¹ã¶«º£ÄÏËÄ´¨¹óÖİÔÆÄÏÉÂÎ÷¸ÊËàÇàº£Ì¨ÍåÄÚÃÉ¹Å¹ãÎ÷Î÷²ØÄşÏÄĞÂ½®±±¾©Ìì½òÉÏº£ÖØÇìÏã¸Û°ÄÃÅ"
 
 def allgeo():
     db = pymysql.connect(host='localhost', passwd='root', user='root', database='spider')
@@ -16,12 +16,12 @@ def allgeo():
     list=[]
     for i in region_list:
         str=i[0]
-        str=str.replace(':','ï¼š')
-        reg=str.split('ï¼š')[1]
-        if reg=='ä¸­å›½é¦™æ¸¯':
-            reg="é¦™æ¸¯"
-        elif reg=='ä¸­å›½å°æ¹¾':
-            reg="å°æ¹¾"
+        str=str.replace(':','£º')
+        reg=str.split('£º')[1]
+        if reg=='ÖĞ¹úÏã¸Û':
+            reg="Ïã¸Û"
+        elif reg=='ÖĞ¹úÌ¨Íå':
+            reg="Ì¨Íå"
         if reg in allregiondict:
             if dict.get(reg)!=None:
                 dict[reg]=dict[reg]+1
@@ -43,12 +43,12 @@ def allreg():
     dict = {}
     for i in region_list:
         str = i[0]
-        str = str.replace(':', 'ï¼š')
-        reg = str.split('ï¼š')[1]
-        if reg == 'ä¸­å›½é¦™æ¸¯':
-            reg = "é¦™æ¸¯"
-        elif reg == 'ä¸­å›½å°æ¹¾':
-            reg = "å°æ¹¾"
+        str = str.replace(':', '£º')
+        reg = str.split('£º')[1]
+        if reg == 'ÖĞ¹úÏã¸Û':
+            reg = "Ïã¸Û"
+        elif reg == 'ÖĞ¹úÌ¨Íå':
+            reg = "Ì¨Íå"
         if reg in allregiondict:
             if dict.get(reg) != None:
                 dict[reg] = dict[reg] + 1
@@ -68,7 +68,7 @@ def sort_dict(mydict):
 # print(sort_dict(allreg()))
 def mygeo():
     map=(Map(init_opts=opts.InitOpts(width="1050px", height="600px"))
-    .add(series_name='åœ°åŸŸçƒ­ç‚¹', data_pair=allgeo(), maptype='china', aspect_scale=0.8, )
+    .add(series_name='µØÓòÈÈµã', data_pair=allgeo(), maptype='china', aspect_scale=0.8, )
     .set_global_opts(
                      legend_opts=opts.LegendOpts(is_show=False),
                      tooltip_opts=opts.TooltipOpts(axis_pointer_type="shadow", background_color="gray"),
@@ -77,10 +77,10 @@ def mygeo():
                      areastyle_opts=opts.AreaStyleOpts(color="gray")))
     bar=(Bar().add_xaxis(list(sort_dict(allreg()).keys())).add_yaxis("",list(sort_dict(allreg()).values()),label_opts=opts.LabelOpts(is_show=True, position="right", formatter="{b} : {c}")).reversal_axis().set_global_opts(
         visualmap_opts=opts.VisualMapOpts(type_="color", orient='vertical', range_text=["High", "Low"],
-                                          pos_left="left", is_inverse=False,pos_top="top" ),
+                                          pos_left="left", is_inverse=False,pos_top="top",min_=0,max_=500 ),
         xaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(is_show=False)),
         yaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(is_show=False)),
-        title_opts=opts.TitleOpts("åœ°åŸŸçƒ­ç‚¹å›¾", title_textstyle_opts=opts.TextStyleOpts(font_style="oblique"),pos_top="40%")
+        title_opts=opts.TitleOpts("µØÓòÈÈµãÍ¼", title_textstyle_opts=opts.TextStyleOpts(font_style="oblique"),pos_top="40%")
 
     ))
 

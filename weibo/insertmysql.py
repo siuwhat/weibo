@@ -1,3 +1,4 @@
+# encoding=gbk
 import pymysql
 nums=0
 

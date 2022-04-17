@@ -3,13 +3,15 @@ import time
 import requests
 from flask import Flask,jsonify,url_for,request,redirect,render_template
 import pymysql
-from charts import chart
+from charts import chart,word
 flag=0
 db = pymysql.connect(host='localhost', passwd='root', user='root', database='spider')
 curse= db.cursor()
 
 app = Flask(__name__)
 app.register_blueprint(chart)#注册chart蓝图
+app.register_blueprint(word)
+
 
 def get_title():
     with open('../../starturls.txt','r') as f:

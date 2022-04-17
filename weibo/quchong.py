@@ -1,3 +1,4 @@
+# encoding=gbk
 #本代码用sql语句进行去重，仅此而已
 import pymysql
 

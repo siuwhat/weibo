@@ -1,3 +1,4 @@
+# encoding=gbk
 import pymysql
 from pyecharts import options as opts
 from pyecharts.charts import Bar
@@ -38,8 +39,8 @@ y=count().values()
 def mybar():
     return (Bar(init_opts=opts.InitOpts(width="1280px",height="600px",theme=ThemeType.SHINE),)
        .add_xaxis(x)
-       .add_yaxis('æ¯æ—¥è¯„è®ºæ•°',list(y))
-       .set_global_opts(title_opts=opts.TitleOpts(title="æ—¶åŸŸçƒ­ç‚¹å›¾",pos_left="60px",title_textstyle_opts=opts.TextStyleOpts(font_style="oblique")),
+       .add_yaxis('Ã¿ÈÕÆÀÂÛÊı',list(y))
+       .set_global_opts(title_opts=opts.TitleOpts(title="Ê±ÓòÈÈµãÍ¼",pos_left="60px",title_textstyle_opts=opts.TextStyleOpts(font_style="oblique")),
                         visualmap_opts=opts.VisualMapOpts(is_show=True,type_="color",min_=0,max_=1000,is_calculable = True,range_text=["High","Low"]),
                         legend_opts=opts.LegendOpts(is_show=False),
                         tooltip_opts=opts.TooltipOpts(trigger="axis",trigger_on="mousemove"),
