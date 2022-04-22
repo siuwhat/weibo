@@ -1,0 +1,4 @@
+先pppoe-setup，然后pppoe-start和pppoe-stop，ping baidu查看网络
+然后再安装tinyproxy，设置代理
+再tinyproxy.conf注释掉Allow那一行
+最后通过curl -x http://ip:8888 url来测试
