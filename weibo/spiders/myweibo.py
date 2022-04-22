@@ -15,11 +15,11 @@ from weibo.replace_url import get_replaced_url
 class MyweiboSpider(scrapy.Spider):
     name = 'myweibo' #设置每个爬虫的名称，具有唯一性
     allowed_domains = ['m.weibo.cn'] #限定url
-    page=10
+    page=1
     count=0
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(hostname='114.104.210.66', port=20402, username='root', password='nU8tW3tT2uN3')
+    client.connect(hostname='jsnj025.tpddns.cn', port=20298, username='root', password='nU8tW3tT2uN3')
     start_urls=[''] #爬虫开始以后最先会从start_urls里进行第一次http请求
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -27,56 +27,57 @@ class MyweiboSpider(scrapy.Spider):
             #遵照参考格式，只能为微博话题下的热门话题 (https://m.weibo.cn/search?containerid=231522type%3D1%26t%3D10%26q%3D%23%E4%B8%80%E5%AE%9A%E8%A6%81%E5%9C%A8%E5%8E%A6%E9%97%A8%E7%9C%8B%E6%AC%A1%E8%8D%A7%E5%85%89%E6%B5%B7%23&extparam=%23%E4%B8%80%E5%AE%9A%E8%A6%81%E5%9C%A8%E5%8E%A6%E9%97%A8%E7%9C%8B%E6%AC%A1%E8%8D%A7%E5%85%89%E6%B5%B7%23&luicode=20000174)
             self.start_urls[0]=f.read().replace('search?containerid=231522type%3D1%26t%3D10','api/container/getIndex?containerid=231522type%3D60')
             self.start_urls[0]=self.start_urls[0]+'&page='+str(self.page)
+
 #添加访问微博的cookie
     cookies=[
 
         {
-                    "_T_WM": "43501422776",
-                    "loginScene": "102003",
-                    "M_WEIBOCN_PARAMS": "luicode=20000174&uicode=20000174",
-                    "MLOGIN": "1",
-                    "mweibo_short_token": "b709eae71c",
-                    "SUB": "_2A25PU7sQDeRhGeBI4lAU8y_Ezz6IHXVsv8VYrDV6PUJbkdANLWzRkW1NRn2D3Zpmtuxo2fg_qymlUfVaKUiY4N8G",
-                    "WEIBOCN_FROM": "1110006030",
-                    "XSRF-TOKEN": "43890b"
+
+                "_T_WM": "19427767517",
+                "M_WEIBOCN_PARAMS": "lfid=231522type%3D60%26q%3D%23%E5%90%89%E6%9E%97%E5%86%9C%E4%B8%9A%E7%A7%91%E6%8A%80%E5%AD%A6%E9%99%A2%E7%96%AB%E6%83%85%23&luicode=20000174&uicode=20000174",
+                "MLOGIN": "1",
+                "mweibo_short_token": "400eb37d9e",
+                "SUB": "_2A25PU7x9DeRhGeFJ71QX9CvIzzuIHXVsv8Q1rDV6PUJbkdAKLWnHkW1Nf8flhFYHDc9fFetXqYKUthlVW-hxR1Q0",
+                "WEIBOCN_FROM": "1110006030",
+                "XSRF-TOKEN": "e8d8b3"
+
         }
         ,
         {
 
-
-                    "_T_WM": "31870840980",
-                    "loginScene": "102003",
-                    "M_WEIBOCN_PARAMS": "luicode=20000174&uicode=20000174",
-                    "MLOGIN": "1",
-                    "mweibo_short_token": "d8de6fb1a0",
-                    "SUB": "_2A25PU7vmDeRhGeFJ71QX9CvIzzuIHXVsv8WurDV6PUJbkdCOLUKkkW1Nf8flhIcXXv86hpMEO2Gc7jolF9nnspf2",
-                    "WEIBOCN_FROM": "1110006030",
-                    "XSRF-TOKEN": "5a0feb"
-
-
-        },
-        {
-                    "_T_WM": "30333836359",
-                    "loginScene": "102003",
-                    "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
-                    "MLOGIN": "1",
-                    "mweibo_short_token": "f6b94f31d6",
-                    "SUB": "_2A25PU7uhDeRhGeBI4lAU8y_Ezz6IHXVsv8XprDV6PUJbkdCOLXDRkW1NRn2D3TGJ1XxJ674yQ0aIt10ioluD75LB",
-                    "WEIBOCN_FROM": "1110006030",
-                    "XSRF-TOKEN": "baf746"
-
+                "_T_WM": "54969320237",
+                "loginScene": "102003",
+                "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
+                "MLOGIN": "1",
+                "mweibo_short_token": "b941ee8db9",
+                "SUB": "_2A25PX7gGDeRhGeBI4lAU8y_Ezz6IHXVso9hOrDV6PUJbkdAKLWbikW1NRn2D3WMWovebptzzVoCZ_JTZHSxMoLxf",
+                "WEIBOCN_FROM": "1110006030",
+                "XSRF-TOKEN": "f8e3a7"
 
         },
         {
 
-                    "_T_WM": "85275312875",
-                    "loginScene": "102003",
-                    "M_WEIBOCN_PARAMS": "luicode=10000011&lfid=102803&uicode=20000174",
-                    "MLOGIN": "1",
-                    "mweibo_short_token": "c2c0ee0228",
-                    "SUB": "_2A25PU7x9DeRhGeFJ71QX9CvIzzuIHXVsv8Q1rDV6PUJbkdAKLWnHkW1Nf8flhFYHDc9fFetXqYKUthlVW-hxR1Q0",
-                    "WEIBOCN_FROM": "1110006030",
-                    "XSRF-TOKEN": "105d4d"
+                "_T_WM": "39878387078",
+                "loginScene": "102003",
+                "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
+                "MLOGIN": "1",
+                "mweibo_short_token": "7082d71a7f",
+                "SUB": "_2A25PX7jVDeRhGeFJ71QX9CvIzzuIHXVso9idrDV6PUJbkdB-LUijkW1Nf8flhADKmo1kpQyKQRxCHZlgX3JJdosw",
+                "WEIBOCN_FROM": "1110006030",
+                "XSRF-TOKEN": "7f8a0a"
+
+        },
+        {
+
+                "_T_WM": "91059357352",
+                "loginScene": "102003",
+                "M_WEIBOCN_PARAMS": "lfid=102803&luicode=20000174&uicode=20000174",
+                "MLOGIN": "1",
+                "mweibo_short_token": "c3e0f930c2",
+                "SUB": "_2A25PX7jiDeRhGeBI4lAU8y_Ezz6IHXVso9iqrDV6PUJbkdAKLWr4kW1NRn2D3X1Dl6YqFZBcCZwsIsdznY_nX0Q1",
+                "WEIBOCN_FROM": "1110006030",
+                "XSRF-TOKEN": "4159eb"
+
         }
     ]
 #添加访问微博的header头
@@ -178,13 +179,6 @@ class MyweiboSpider(scrapy.Spider):
             for t in data:
                 self.count=self.count+1 #当前计数的条数
                 print("当前第" + str(self.count) + "条")
-                # if self.count % 2000 == 0:#你要记住这一点，一旦转换了原来有的ip就会失效
-                #     self.changeip()
-                #     stdin, stdout, stderr = self.client.exec_command(
-                #         'ifconfig  ppp0 | awk \'{print $2}\'|awk "NR==2"')
-                #     result = stdout.read().decode('utf-8')
-                #     ip = {'http': result.strip() + ':8888'}
-                #     print(ip)
                 if self.count==10000:
                     self.crawler.engine.close_spider(self,"10000条达成!") #爬虫会停止在10000条
                 else:

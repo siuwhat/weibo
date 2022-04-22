@@ -8,9 +8,6 @@
 from itemadapter import ItemAdapter
 import csv
 import pymysql
-import codecs
-import requests
-import json
 class WeiboPipeline:
     def __init__(self):
         self.file=open('text.csv','a',encoding='gb18030',newline='')#写入text.csv 注意encoding不能为utf-8，要么是utf-8-sig要么是gbk,gb18030

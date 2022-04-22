@@ -36,7 +36,7 @@
   </head>
   <body>
     
-<header class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 ">
+<header id="headclose" class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 ">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/"> Data Analysis </a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -46,50 +46,50 @@
 
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="close">
   <div class="row ">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item ">
-            <a class="nav-link" aria-current="page" href="/chart/hotspot">
+            <a class="nav-link" id="hotspot" aria-current="page" href="/chart/hotspot">
               <span data-feather="bar-chart"></span>
              时域热点图
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/chart/mapspot">
+            <a class="nav-link" id="mapspot" href="/chart/mapspot">
               <span data-feather="map-pin"></span>
               地域热点图
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/chart/wordcloud">
+            <a class="nav-link" id="wordcloud" href="/chart/wordcloud">
               <span data-feather="cloud"></span>
               词云图
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/chart/sentiments">
+            <a class="nav-link" id="sentiments" href="/chart/sentiments">
               <span data-feather="users"></span>
               情绪折线图
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="/chart/pie">
+            <a class="nav-link " id="pie" href="/chart/pie">
               <span data-feather="pie-chart"></span>
               情绪比较饼图
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/chart/liquid">
+            <a class="nav-link" id="liquid" href="/chart/liquid">
   <span data-feather="search"></span>
               情绪比较球图
 
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/word/show">
+            <a class="nav-link" id="kmeans" href="/word/show">
               <span data-feather="book"></span>
             文本聚类结果
             </a>
@@ -214,11 +214,14 @@
 
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
 <script src="{{ url_for('static',filename='show.js') }}"></script>
+
    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
 <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/china.js"></script>
 <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts-wordcloud.min.js"></script>
 <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts-liquidfill.min.js"></script>
 <script>
+
+
 $(document).ready(function(){ $('#stop').click(function(){
        $('#stop').click(
                $('#img').empty()

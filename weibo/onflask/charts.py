@@ -44,7 +44,7 @@ def mapspot_show():
 
 @chart.route('/wordcloud')
 def wordcloud():
-    return render_template('show.html',**{'url':'/chart/wordcloud_show','title':title})
+    return render_template('sentiments.html',**{'url':'/chart/wordcloud_show','title':title},href='/wordfreq')
 
 @chart.route('/wordcloud_show')
 def wordcloudshow():
@@ -52,7 +52,7 @@ def wordcloudshow():
 
 @chart.route('/sentiments')
 def sentiments():
-    return render_template('sentiments.html',**{'url':'/chart/senti_show','title':title})
+    return render_template('sentiments.html',**{'url':'/chart/senti_show','title':title},href="/allshow_sentiment",flag=1)
 
 @chart.route('/senti_show')
 def sentiment_show():

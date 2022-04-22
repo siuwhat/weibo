@@ -8,6 +8,11 @@ var start=0;
        $('#stop').click(clearInterval(start))
 
      });});
+ $(document).ready(function(){
+       $('#allshow').click(function(){
+         window.location.href="/allshow"
+       })
+     });
 
 
   $(document).ready(function(){ $('#show').click(function(){

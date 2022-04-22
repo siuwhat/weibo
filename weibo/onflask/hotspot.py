@@ -48,6 +48,15 @@ def mybar():
                         datazoom_opts=opts.DataZoomOpts(range_start=0,range_end=100),
                         ).render_embed())
 
+def thebar():
+    return (Bar(init_opts=opts.InitOpts(width="1280px",height="600px",theme=ThemeType.SHINE),)
+       .add_xaxis(x)
+       .add_yaxis('每日评论数',list(y))
+       .set_global_opts(title_opts=opts.TitleOpts(title="时域热点图",pos_left="center",pos_top="50%"),
+                        visualmap_opts=opts.VisualMapOpts(is_show=True,type_="color",min_=0,max_=1000,is_calculable = True,range_text=["High","Low"],pos_right="5%",pos_bottom="10%"),
+                        legend_opts=opts.LegendOpts(is_show=False),
+                        tooltip_opts=opts.TooltipOpts(trigger="axis",trigger_on="mousemove"),
+                        ))
 
 
 # print(count())

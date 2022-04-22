@@ -14,7 +14,7 @@ from itemadapter import is_item, ItemAdapter
 
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-client.connect(hostname='114.104.210.66', port=20402, username='root', password='nU8tW3tT2uN3')
+client.connect(hostname='jsnj025.tpddns.cn', port=20298, username='root', password='nU8tW3tT2uN3')
 
 class WeiboSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,

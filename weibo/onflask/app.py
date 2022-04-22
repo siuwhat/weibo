@@ -1,8 +1,10 @@
 import json
 import time
 import requests
+import csv
 from flask import Flask,jsonify,url_for,request,redirect,render_template
 import pymysql
+from wordcloudshow import gaoping
 from charts import chart,word
 flag=0
 db = pymysql.connect(host='localhost', passwd='root', user='root', database='spider')
@@ -26,9 +28,9 @@ def get_title():
 
 @app.route('/about',methods=['GET'])
 def about():
+    global flag
     f = request.args.get('flag')
     print(f)
-    global flag
     if f!=None:
         flag=int(f)
     flag=flag+1
@@ -84,5 +86,32 @@ def hello():
 @app.route('/chart')
 def ret():
     return render_template('hello.html')
+@app.route('/allshow')
+def allshow():
+    if if_exists('text'):
+        if if_data_exists('text'):
+            curse.execute('select * from text;')
+            db.commit()
+            res = curse.fetchall()
+            db.commit()
+            if res:
+                data =res
+
+    return render_template('allshow.html',data=data,title=get_title())
+@app.route('/allshow_sentiment')
+def allshow_senti():
+
+    data=csv.reader(open('static/file/csv/senti.csv','r',encoding='utf-8-sig',newline=''))
+    next(data)
+    return render_template('allshow.html',data=data,sentiment="SENTIMENT",title=get_title())
+
+@app.route('/wordfreq')
+def frequency():
+    dict=gaoping()
+    list=[]
+    for i,t in enumerate(dict,start=1):
+        list.append([i,t[0],t[1]])
+    return render_template('wordfrequency.html',title=get_title(),data=list)
+
 if __name__ == '__main__':
     app.run(debug=True)
