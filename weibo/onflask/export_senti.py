@@ -5,7 +5,14 @@ import pymysql
 from snownlp import SnowNLP
 
 from filter import filter_str
-from sentipie import getstopstr
+
+def getstopstr():
+    stopstr=""
+    with open("static/file/txt/stopwords.txt","r",encoding="utf-8") as f:
+        for i in f.readlines():
+            stopstr=stopstr+i.strip()
+    return stopstr
+
 
 def export():
     db = pymysql.connect(host='localhost', passwd='root', user='root', database='spider')

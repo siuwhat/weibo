@@ -68,7 +68,7 @@ def sort_dict(mydict):
 # print(sort_dict(allreg()))
 def mygeo():
     map=(Map(init_opts=opts.InitOpts(width="1050px", height="600px"))
-    .add(series_name='地域热点', data_pair=allgeo(), maptype='china', aspect_scale=0.8, )
+    .add(series_name='地区热点', data_pair=allgeo(), maptype='china', aspect_scale=0.8, )
     .set_global_opts(
                      legend_opts=opts.LegendOpts(is_show=False),
                      tooltip_opts=opts.TooltipOpts(axis_pointer_type="shadow", background_color="gray"),
@@ -80,11 +80,9 @@ def mygeo():
                                           pos_left="left", is_inverse=False,pos_top="top",min_=0,max_=500 ),
         xaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(is_show=False)),
         yaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(is_show=False)),
-        title_opts=opts.TitleOpts("地域热点图", title_textstyle_opts=opts.TextStyleOpts(font_style="oblique"),pos_top="40%")
+        title_opts=opts.TitleOpts("地区热点图", title_textstyle_opts=opts.TextStyleOpts(font_style="oblique"),pos_top="40%")
 
     ))
 
     return (Grid(init_opts=opts.InitOpts(width="1920px", height="1080px")).add(bar,grid_opts=opts.GridOpts(pos_top="50%",pos_right="70%",pos_left="5px")).add(map,grid_opts=opts.GridOpts(pos_bottom="50%")).render_embed())
-
-
 

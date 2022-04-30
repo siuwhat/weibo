@@ -52,16 +52,28 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
+             <li class="nav-item">
+            <a class="nav-link" id="sentiments" href="/chart/sentiments">
+              <span data-feather="users"></span>
+              情绪结果图
+            </a>
+          </li>
+               <li class="nav-item">
+            <a class="nav-link" id="sentimap" href="/chart/sentimap">
+              <span data-feather="map-pin"></span>
+              情绪结果地图
+            </a>
+          </li>
           <li class="nav-item ">
            <a class="nav-link" id="hotspot" aria-current="page" href="/chart/hotspot">
               <span data-feather="bar-chart"></span>
-             时域热点图
+             时间热点图
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="mapspot" href="/chart/mapspot">
               <span data-feather="map-pin"></span>
-              地域热点图
+              空间热点图
             </a>
           </li>
           <li class="nav-item">
@@ -70,31 +82,7 @@
               词云图
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="sentiments" href="/chart/sentiments">
-              <span data-feather="users"></span>
-              情绪折线图
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " id="pie" href="/chart/pie">
-              <span data-feather="pie-chart"></span>
-              情绪比较饼图
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="liquid" href="/chart/liquid">
-  <span data-feather="search"></span>
-              情绪比较球图
 
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="kmeans" href="/word/show">
-              <span data-feather="book"></span>
-            文本聚类结果
-            </a>
-          </li>
             <li class="nav-item">
             <a class="nav-link" href="#">
               <span ></span>
@@ -104,6 +92,13 @@
             <a class="nav-link" href="#">
                <div class="btn-group me-lg-2">
                   <button type="button" style="margin-left: 20px;" id="stop2" class="btn btn-sm btn-outline-secondary">停止展示</button>
+              </div>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/datasenti">
+               <div class="btn-group me-lg-2">
+                  <button type="button" style="margin-left: 20px;"  class="btn btn-sm btn-outline-secondary">测试情绪值</button>
               </div>
             </a>
           </li>

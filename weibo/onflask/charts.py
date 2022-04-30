@@ -3,13 +3,8 @@ import requests
 from flask import Blueprint, render_template, url_for, request
 from hotspot import mybar
 from mapspot import mygeo
-from sentipie import mypie
-from create_model import make_model
-from kmeans import make_kmeans
 from wordcloudshow import mywdcd
-from sentiment import mysenti
-from sentiliquid import myliquid
-from get_img import make_img
+from sentiment import mysenti,mysentimap
 
 
 def get_title():
@@ -58,32 +53,11 @@ def sentiments():
 def sentiment_show():
     return mysenti()
 
-@chart.route('/pie')
-def pie():
-    return render_template('show.html',**{'url':'/chart/pie_show','title':title})
+@chart.route('/sentimap')
+def sentimap():
+    return render_template('show.html', **{'url': '/chart/sentimap_show', 'title': title})
 
-@chart.route('/pie_show')
-def pie_show():
-    return mypie()
-
-@chart.route('/liquid')
-def liquid():
-    return render_template('show.html',**{'url':'/chart/liquid_show','title':title})
-
-@chart.route('/liquid_show')
-def liquid_show():
-    return myliquid()
-
-
-@word.route('/show')
-def kmeans():
-    make_model()
-    make_img()
-    return render_template('kmeans.html',**{'url':'static/file/png/sse.png','title':title})
-
-@word.route('/make_kmeans',methods=['GET'])
-def kmeans_show():
-    num=int(request.args.get('number'))
-    print(make_kmeans(num))
-    return {'data':1}
+@chart.route('/sentimap_show')
+def sentimap_show():
+    return mysentimap()
 

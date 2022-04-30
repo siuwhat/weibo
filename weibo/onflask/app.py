@@ -4,6 +4,8 @@ import requests
 import csv
 from flask import Flask,jsonify,url_for,request,redirect,render_template
 import pymysql
+
+from get_sentiment import getit
 from wordcloudshow import gaoping
 from charts import chart,word
 flag=0
@@ -112,6 +114,15 @@ def frequency():
     for i,t in enumerate(dict,start=1):
         list.append([i,t[0],t[1]])
     return render_template('wordfrequency.html',title=get_title(),data=list)
+
+@app.route('/datasenti')
+def data():
+    return render_template('get_sentiment.html')
+
+@app.route('/get_sentiment',methods=['GET'])
+def get_senti():
+    text = request.args.get('text')
+    return {'data':getit(text)}
 
 if __name__ == '__main__':
     app.run(debug=True)
